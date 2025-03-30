@@ -35,7 +35,7 @@ let dartsGame = {
     ],
     returnFullName(player) {
         //returns full name of player
-        return `${this._players[player].firstName} "${this._players[player].dartsName}" ${this._players[player].lastName}`
+        return `${this._players[player].firstName} ${this._players[player].dartsName} ${this._players[player].lastName}`
     },
     determineNextPlayer(player) {
         if(player === 0) {
@@ -80,17 +80,17 @@ let dartsGame = {
     },
     deleteScore(player) {
         //delete last score from score history
-        this._game[player].remainingScore = this._game[player].remainingScore + this._scoreHistory[player].scores[this._scoreHistory[0].scores.length - 1] //add last score back on
-        this._gameStats[player].cumScore = this._gameStats[player].cumScore - this._scoreHistory[player].scores[this._scoreHistory[0].scores.length - 1] //remove last score from cum score for avg recalculation
+        this._game[player].remainingScore = this._game[player].remainingScore + this._scoreHistory[player].scores[this._scoreHistory[player].scores.length - 1] //add last score back on
+        this._gameStats[player].cumScore = this._gameStats[player].cumScore - this._scoreHistory[player].scores[this._scoreHistory[player].scores.length - 1] //remove last score from cum score for avg recalculation
         this._scoreHistory[player].scores.pop() //remove last score from history
 
         if(this._gameStats[player].dartsThrown !== 0) {
             this._gameStats[player].dartsThrown = this._gameStats[player].dartsThrown - 3 //remove darts thrown and avoid negative numbers
         } 
 
-        //BUG delete score creates cumScore just for P2 
         if(this._gameStats[player].visits > 1) {
             this._gameStats[player].visits = this._gameStats[player].visits - 1 //remove last visit
+            this._gameStats[player].scoreAvg = Math.round(this._gameStats[player].cumScore / this._gameStats[player].visits) //calculates average score
         } else {
             dartsGame._gameStats[player].scoreAvg = 0 //recalculates average score
             this._gameStats[player].visits = this._gameStats[player].visits - 1 //remove last visit
@@ -288,7 +288,7 @@ let dartsGame = {
             this._game[player].legsWon += 1;
             this.determineNextPlayer(player) //BUG this overrrides 
 
-            alert(`Well done! ${this.returnFullName(player)} wins this leg!!`);
+            alert(`Well done! ${this.returnFullName(player)} wins this leg! Click 'Next Leg' button to proceed.`);
         }
     },
     hasWonGame(player){
@@ -504,6 +504,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showFinishP1(); //update the finish display
             scoreInputP1.value = ''; // Clear the input field
             nextLeg(); //call function to unlock next leg button and update legs won
+            scoreInputP2.focus(); //move to next input
         } else {
             alert("Please enter a valid number.")
         }
@@ -523,6 +524,7 @@ document.addEventListener("DOMContentLoaded", function() {
             showFinishP2(); //update the finish display
             scoreInputP2.value = ''; // Clear the input field
             nextLeg(); //call function to unlock next leg button and update legs won
+            scoreInputP1.focus(); //move to next input
         } else {
             alert("Please enter a valid number.")
         }
