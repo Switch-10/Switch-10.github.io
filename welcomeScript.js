@@ -36,22 +36,34 @@ function saveGameData() {
 function updatePlayerNames() {
 
     //update Player1
-    const p1FirstName = document.getElementById("p1FirstName");
-    const p1LastName = document.getElementById("p1LastName");
-    const p1DartsName= document.getElementById("p1DartsName");
+    const p1FirstName = document.getElementById("p1FirstName").value;
+    const p1LastName = document.getElementById("p1LastName").value;
+    const p1DartsName = document.getElementById("p1DartsName").value;
 
-    dartsGame._players[0].firstName = p1FirstName.value;
-    dartsGame._players[0].lastName = p1LastName.value;
-    dartsGame._players[0].dartsName = p1DartsName.value;
+    dartsGame._players[0].firstName = p1FirstName;
+    dartsGame._players[0].lastName = p1LastName;
+    dartsGame._players[0].dartsName = p1DartsName;
+
+    if(p1DartsName){
+        dartsGame._players[0].dartsName = `"${p1DartsName}"`;
+    }
 
     //update Player2
-    const p2FirstName = document.getElementById("p2FirstName");
-    const p2LastName = document.getElementById("p2LastName");
-    const p2DartsName= document.getElementById("p2DartsName");
+    const p2FirstName = document.getElementById("p2FirstName").value;
+    const p2LastName = document.getElementById("p2LastName").value;
+    const p2DartsName= document.getElementById("p2DartsName").value;
 
-    dartsGame._players[1].firstName = p2FirstName.value;
-    dartsGame._players[1].lastName = p2LastName.value;
-    dartsGame._players[1].dartsName = p2DartsName.value;
+    dartsGame._players[1].firstName = p2FirstName;
+    dartsGame._players[1].lastName = p2LastName;
+
+    if(p2DartsName){
+        dartsGame._players[1].dartsName = `"${p2DartsName}"`;
+    }
+
+    if(p1FirstName && p2FirstName){
+        return true
+    }
+
 }
 
 //welcome.HTML javascript
@@ -70,10 +82,16 @@ document.addEventListener("DOMContentLoaded", function() {
         dartsGame._game[0].remainingScore = 501;
         dartsGame._game[1].remainingScore = 501;
         gameType501.className = "btn btn-success";
-        //set names
-        updatePlayerNames()
-        throwFirstP1.innerText = p1FirstName.value;
-        throwFirstP2.innerText = p2FirstName.value;
+        //set names and update first throw boxes
+        if(updatePlayerNames()){
+            throwFirstP1.innerText = p1FirstName.value;
+            throwFirstP2.innerText = p2FirstName.value;
+            updatePlayerNames()
+        } else {
+            throwFirstP1.innerText = "Player 1"
+            throwFirstP2.innerText = "Player 2"
+            updatePlayerNames()
+        }
     });
 
     gameType301.addEventListener("click", function() {
@@ -83,10 +101,16 @@ document.addEventListener("DOMContentLoaded", function() {
         dartsGame._game[0].remainingScore = 301;
         dartsGame._game[1].remainingScore = 301;
         gameType301.className = "btn btn-success"
-        //set names
-        updatePlayerNames()
-        throwFirstP1.innerText = p1FirstName.value;
-        throwFirstP2.innerText = p2FirstName.value;
+        //set names and update first throw boxes
+        if(updatePlayerNames()){
+            throwFirstP1.innerText = p1FirstName.value;
+            throwFirstP2.innerText = p2FirstName.value;
+            updatePlayerNames()
+        } else {
+            throwFirstP1.innerText = "Player 1"
+            throwFirstP2.innerText = "Player 2"
+            updatePlayerNames()
+        }
     });
 
     //select legs then load game based on name, match & legs
