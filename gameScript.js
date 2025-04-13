@@ -1,16 +1,5 @@
 //gameScript loads dartsGame object from session storage and allows players to play match
 
-/* 
-TO DO IDEAS:
-- add in undo score functions
-- update legs to 'BEST OF' rather than as a set limit
-- create localStorage dartsGame object output on game win for tracking matches
-
-BUGS
-- undoing first score results in avg showing as NaN. 
-*/
-
-
 //target undo buttons at start as used in dartsGame object
 const deleteButtonP1 = document.getElementById("deleteScoreP1Button");
 const deleteButtonP2 = document.getElementById("deleteScoreP2Button");
