@@ -96,7 +96,8 @@
                     <div class="row py-2" id="matchOptions">
                         <div class="col">
                             <h2>Who will throw first?</h2>
-                            <p>Throw closest to bullseye. Match will start when you choose.<p>                      
+                            <p>Throw closest to bullseye. Match will start when you choose.<p>  
+                            <p id="nameError" style="color:red; font-style:italic; font-size: 12px; display:none">Please enter player names to proceed.</p>                    
                         </div>
                     </div>
                     <div class="row pb-3">
@@ -110,7 +111,8 @@
         </div>
     </div>
 
-<script src="welcomeScript.js"></script>
+<script type="module" src="./views/index.js"></script>
+<script type="module" src="./assets/data/gameData.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 <footer>
