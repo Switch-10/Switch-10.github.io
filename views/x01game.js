@@ -9,7 +9,7 @@ const deleteButtonP2 = document.getElementById("deleteScoreP2Button");
 
 //load the welcome page data from session storage
 function loadGameData() {
-    const storedGameData = sessionStorage.getItem('x01DartsGameData');
+    const storedGameData = sessionStorage.getItem('x01DartsGame');
     let parsedGameData = JSON.parse(storedGameData)
 
     //load game data into darts object
