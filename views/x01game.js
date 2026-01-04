@@ -43,8 +43,6 @@ function loadGameData() {
     }
 };
 
-loadGameData() //load darts object from session storage
-
 //******* GAME FUNCTIONS ***********
 //update match overview in subtitle
 const matchOverview = document.getElementById("matchOverview");
@@ -432,6 +430,8 @@ function hasWonGame(player){
 //x01game.HTML javascript
 document.addEventListener("DOMContentLoaded", function() {
 
+    loadGameData() //load darts object from session storage
+    
     const nextLegButton = document.getElementById("nextLegButton");
     nextLegButton.disabled = true;
 
