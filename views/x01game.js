@@ -45,9 +45,6 @@ function loadGameData() {
 
 //******* GAME FUNCTIONS ***********
 //update match overview in subtitle
-const matchOverview = document.getElementById("matchOverview");
-matchOverview.innerText = `Game on: ${x01DartsGame._game[0].startingScore} - best of ${x01DartsGame._game[0].totalLegs} legs!`
-
 function updateScoreDisplayP1(enteredScoreP1) {
     const gameScoreP1 = document.getElementById("gameScoreP1");
     gameScoreP1.innerText = x01DartsGame._game[0].remainingScore;
@@ -432,6 +429,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     loadGameData() //load darts object from session storage
     
+    //trigger subtitle updates once GameData
+    const matchOverview = document.getElementById("matchOverview");
+    matchOverview.innerText = `Game on: ${x01DartsGame._game[0].startingScore} - best of ${x01DartsGame._game[0].totalLegs} legs!`
+
     const nextLegButton = document.getElementById("nextLegButton");
     nextLegButton.disabled = true;
 
